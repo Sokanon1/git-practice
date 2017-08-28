@@ -1,0 +1,72 @@
+
+html, body {
+	 background: rgba(0, 0, 0, 0.8);
+	 height: 100vh;
+	 font-family: 'Droid Sans', sans-serif;
+	 font-weight: 200
+}
+
+#landing {
+	height: 100vh;
+}
+
+.wrapper {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+ul {
+	padding-left: none;
+	list-style-type: none;
+}
+img {
+	max-width: 100%;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 50%;
+	margin-top: 20px;
+	@include respond-to(phone) {
+		width: 80%;
+	}
+}
+
+select {
+	background: rgba(235, 226, 234, 1);
+	outline: none;
+	width: 60%;
+	margin: 0 auto;
+	box-shadow: 2px 3px 8px 1px $mainBoxShadow;
+	text-align: center;
+	@include respond-to(tablet) {
+		width: 100%;
+	}
+}
+
+
+.inputs {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 20px;
+}
+
+input {
+	outline: none;
+	box-shadow: 2px 3px 8px 1px $mainBoxShadow;
+}
+
+.submit {
+	background: rgba(235, 226, 234, 1);
+	color: $mainBoxShadow;
+}
+
+button {
+	margin: 0 auto;
+	margin-top: 20px;
+	outline: none;
+}

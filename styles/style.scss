@@ -8,6 +8,27 @@
 
 #landing, #openingCrawl {
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url('../assets/stars_background.jpg');
+	position: relative;
+}
+
+#landing .sound {
+	background: none;
+	border: none;
+	position: absolute;
+	top: 0;
+	left: 30px;
+	padding: 20px 20px;
+	outline: none;
+}
+
+#landing .sound i {
+	color: $brandYellow;
+	opacity: 0.5;
+}
+
+#landing .sound:hover i {
+	font-color: $brandYellow;
+	opacity: 1;
 }
 
 .user_name {
@@ -39,6 +60,7 @@
 	background: black;
 	border: 2px solid $brandBlue;
 	font-size: 25px;
+	color: $brandBlue;
 }
 
 .user_name a {
@@ -49,6 +71,7 @@
 .user_name .submitName:hover {
 	background: $brandBlue;
 	border: 2px solid black;
+	color: black;
 }
 .user_name .submitName:hover a {
 	color: black;
@@ -56,24 +79,9 @@
 
 // OPENING CRAWL [openingCrawl.html]
 
-#openingCrawl .sound {
-	background: none;
-	border: none;
-	position: absolute;
-	top: 0;
-	left: 30px;
-	padding: 20px 20px;
-	outline: none;
-}
-
-#openingCrawl .sound i {
-	color: $brandYellow;
-	opacity: 0.5;
-}
-
-#openingCrawl .sound:hover i {
-	font-color: $brandYellow;
-	opacity: 1;
+#openingCrawl {
+	display: none;
+	height: 100vh;
 }
 
 #openingCrawl .skip {
@@ -131,9 +139,9 @@
     transform: scale(1);
   }
   100% {
+    transform: translateZ(-1000em);
     display: none;
     opacity: 0;
-    transform: translateZ(-1000em);
   }
 }
 
@@ -150,9 +158,9 @@
     transform: scale(1);
   }
   100% {
+    transform: translateZ(-1000em);
     display: none;
     opacity: 0;
-    transform: translateZ(-1000em);
   }
 }
 
@@ -298,6 +306,8 @@ img {
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url('../assets/OuSizUw.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
+	display: none;
+	height: 100vh;
 }
 
 #game p {
@@ -315,6 +325,10 @@ img {
 	margin: 0 auto;
 	width: 100%;
 	padding: 0;
+}
+
+#cards {
+	overflow-x: auto;
 }
 
 .profile {
@@ -406,14 +420,6 @@ img {
     flex-direction: column;
     z-index: 10;
     margin-top: 20px;
-}
-
-.profile:hover .back {
-  -webkit-transform:rotateY(0);
-}
-
-.profile:hover .front {
-  -webkit-transform:rotateY(-180deg);
 }
 
 .form {

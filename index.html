@@ -3,23 +3,109 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
 	<title>Dating Wars</title>
+
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/Sensibleworld-Starwars-Death-Star.ico">
-	<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Source+Sans+Pro" rel="stylesheet">
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/style.css">
 </head>
-<body id="landing">
-	<div class="wrapper">
-		<div class="user_name">
-			<p>A long time ago in a galaxy far
-			</p>
-			<p>far away...</p>
-			<form class="userName">
-			 	<input class="name" type="text" placeholder="Your Name" required>
-			 	<button class="submitName" type="submit"><a href="openingCrawl.html">Start</a></button>
-			</form>
+<body>
+	<section id="landing">
+		<div class="wrapper">
+			<div class="user_name">
+				<p>A long time ago in a galaxy far
+				</p>
+				<p>far away...</p>
+				<form class="userName">
+				 	<input class="name" type="text" placeholder="Your Name" required>
+				 	<button class="submitName" type="submit">Let's Begin</button>
+				</form>
+			</div>
 		</div>
-	</div>
+	</section>
+	<section id="openingCrawl">
+		<div class="wrapper">
+			<button class="sound">
+				<i class="fa fa-volume-up fa-stack-2x" aria-hidden="true"></i>
+			</button>
+			<audio id="themeMusic" src="assets/starWarsMainTheme.mp3"></audio>
+			<div class="title">
+			  <img src="assets/star.svg" alt="Star" class="star">
+			  <img src="assets/wars.svg" alt="Wars" class="wars">
+			  <h2 class="byline" id="byline">The Dating Game</h2>
+			</div>
+			<div id="titles">
+				<div id="titlecontent">
+					<div class="text"></div>
+				</div>
+			</div>
+			<button class="skip">Next</button>
+		</div>
+	</section>
+	<section id="game">
+		<div class="options">
+				<ul class="wrapper" id="cards">
+					<li class="profile one">
+						<div class="front">
+							<img src="assets/droid_silouette.png" alt="">
+							<div class="overlay">
+								<div class="pickMe_overlay"></div>
+							</div>
+							<div class="profile1answers">
+								<h4>1</h4>
+							</div>
+						</div>
+						<div class="back profile1full">
+						</div>
+					</li>
+					<li class="profile two">
+						<div class="front">
+							<img src="assets/droid_silouette.png" alt="">
+							<div class="overlay"></div>
+							<div class="profile2answers">
+								<h4>2</h4>
+							</div>
+						</div>
+						<div class="back profile2full">
+							<img src="assets/unknown_image.png" alt="">
+						</div>
+					</li>
+					<li class="profile three">
+						<div class="front">
+							<img src="assets/droid_silouette.png" alt="">
+							<div class="overlay"></div>
+							<div class="profile3answers">
+								<h4>3</h4>
+							</div>		
+						</div>
+						<div class="back profile3full">
+							<img src="assets/unknown_image.png" alt="">
+						</div>
+					</li>
+				</ul>
+		</div>
+		<div class="form">
+			<div class="wrapper">
+				<form action="">
+				  <select name="questions">
+				  	<option>PICK A QUESTION!</option>
+				    <option value="eye_color">What color are your eyes?</option>
+				    <option value="height">How tall are you?</option>
+				    <option value="starships">Have you flown any starships?</option>
+				    <option value="films">What films have you been in?</option>
+				    <option value="homeworld">Where are you from?</option>
+				  </select>
+				  <div class="inputs">
+					  <input class="submit profile_1" type="submit" data-index="0" value="1">
+					  <input class="submit profile_2" type="submit" data-index="1" value="2">
+					  <input class="submit profile_3" type="submit" data-index="2" value="3">
+				  </div>
+				</form>
+			</div>
+		</div>
+	</section>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 	<script src="scripts/script.js"></script>
 </body>

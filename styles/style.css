@@ -216,7 +216,25 @@ button {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(5%, rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("../assets/stars_background.jpg");
   background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url("../assets/stars_background.jpg");
   background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url("../assets/stars_background.jpg");
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url("../assets/stars_background.jpg"); }
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url("../assets/stars_background.jpg");
+  position: relative; }
+
+#landing .sound {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  padding: 20px 20px;
+  outline: none; }
+
+#landing .sound i {
+  color: gold;
+  opacity: 0.5; }
+
+#landing .sound:hover i {
+  font-color: gold;
+  opacity: 1; }
 
 .user_name {
   text-align: center;
@@ -246,7 +264,8 @@ button {
   padding: 10px;
   background: black;
   border: 2px solid #0AF0FC;
-  font-size: 25px; }
+  font-size: 25px;
+  color: #0AF0FC; }
 
 .user_name a {
   color: #0AF0FC;
@@ -254,27 +273,15 @@ button {
 
 .user_name .submitName:hover {
   background: #0AF0FC;
-  border: 2px solid black; }
+  border: 2px solid black;
+  color: black; }
 
 .user_name .submitName:hover a {
   color: black; }
 
-#openingCrawl .sound {
-  background: none;
-  border: none;
-  position: absolute;
-  top: 0;
-  left: 30px;
-  padding: 20px 20px;
-  outline: none; }
-
-#openingCrawl .sound i {
-  color: gold;
-  opacity: 0.5; }
-
-#openingCrawl .sound:hover i {
-  font-color: gold;
-  opacity: 1; }
+#openingCrawl {
+  display: none;
+  height: 100vh; }
 
 #openingCrawl .skip {
   position: absolute;
@@ -328,10 +335,10 @@ button {
     -webkit-transform: scale(1);
     transform: scale(1); }
   100% {
-    display: none;
-    opacity: 0;
     -webkit-transform: translateZ(-1000em);
-    transform: translateZ(-1000em); } }
+    transform: translateZ(-1000em);
+    display: none;
+    opacity: 0; } }
 @keyframes star {
   0% {
     opacity: 0;
@@ -344,10 +351,10 @@ button {
     -webkit-transform: scale(1);
     transform: scale(1); }
   100% {
-    display: none;
-    opacity: 0;
     -webkit-transform: translateZ(-1000em);
-    transform: translateZ(-1000em); } }
+    transform: translateZ(-1000em);
+    display: none;
+    opacity: 0; } }
 
 @-webkit-keyframes wars {
   0% {
@@ -361,10 +368,10 @@ button {
     -webkit-transform: scale(1);
     transform: scale(1); }
   100% {
-    display: none;
-    opacity: 0;
     -webkit-transform: translateZ(-1000em);
-    transform: translateZ(-1000em); } }
+    transform: translateZ(-1000em);
+    display: none;
+    opacity: 0; } }
 
 @keyframes wars {
   0% {
@@ -378,10 +385,10 @@ button {
     -webkit-transform: scale(1);
     transform: scale(1); }
   100% {
-    display: none;
-    opacity: 0;
     -webkit-transform: translateZ(-1000em);
-    transform: translateZ(-1000em); } }
+    transform: translateZ(-1000em);
+    display: none;
+    opacity: 0; } }
 
 @-webkit-keyframes spin-letters {
   0%, 10% {
@@ -554,7 +561,9 @@ img {
   background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url("../assets/OuSizUw.jpg");
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url("../assets/OuSizUw.jpg");
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  display: none;
+  height: 100vh; }
 
 #game p {
   margin: 0;
@@ -577,6 +586,9 @@ img {
   margin: 0 auto;
   width: 100%;
   padding: 0; }
+
+#cards {
+  overflow-x: auto; }
 
 .profile {
   width: 27%;
@@ -666,12 +678,6 @@ img {
   flex-direction: column;
   z-index: 10;
   margin-top: 20px; }
-
-.profile:hover .back {
-  -webkit-transform: rotateY(0); }
-
-.profile:hover .front {
-  -webkit-transform: rotateY(-180deg); }
 
 .form {
   padding-top: 10px;

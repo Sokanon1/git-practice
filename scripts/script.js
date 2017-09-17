@@ -18,7 +18,7 @@ starWarsApp.getPeople = function (number){
 		const allEndpoints = [];
 		for (let i = 0; i < starWarsApp.endpoints.length; i++){
 			const endpoint = starWarsApp.endpoints[i];
-			allEndpoints.push(starWarsApp.getMoreStuff(person, endpoint));
+			allEndpoints.push(starWarsApp.getSubsequentCharacterInformation(person, endpoint));
 		};
 
 		Promise.all(allEndpoints)
@@ -44,7 +44,7 @@ starWarsApp.getPeople = function (number){
 	});
 }
 
-starWarsApp.getMoreStuff = function(person, endpoint) {
+starWarsApp.getSubsequentCharacterInformation = function(person, endpoint) {
 	let results = [];
 	let prop = person[endpoint];
 
@@ -85,7 +85,8 @@ starWarsApp.getMoreStuff = function(person, endpoint) {
 starWarsApp.getRandomProfiles = function() {
 	// for loop to call 3 random 'people' profiles
 	for (let r = 0; r < 3; r++) {
-		randomNumber = Math.floor(Math.random() * 86) + 1;
+	
+		randomNumber = Math.floor(Math.random() * 88) + 1;
 		starWarsApp.getPeople(randomNumber);
 	}
 }
@@ -95,10 +96,16 @@ starWarsApp.getRandomProfiles = function() {
 // attempted to make the below work but couldn't thus the reason for the hard code in the html
 starWarsApp.userName = function(e){
 	$('.userName').on('submit', function(e){
-		const user = $('.name').val();
-		console.log(user);
 		e.preventDefault();
-		$('.crawl_text').append(`<p>It is a dark time for ${user}. Although the Death Star has been destroyed, ${user}'s longing to find his true love has not waned.</p><p>Evading the dreaded Imperial Starfleet, ${user} has established a new secret base on the remote ice world of Hoth.</p><p>There, ${user} meets three possible matches but must choose one among them before learning their true identities....</p>`);
+		const user = $('.name').val();
+		$('#landing').css('display', 'none');
+		$('#openingCrawl').css('display', 'block');
+
+		starWarsApp.startAnimation();
+		
+		$('.crawl_text').append(`<p>It is a dark time for ${user}. Although the Death Star has been destroyed, ${user}'s longing to find true love has not waned.</p><p>Evading the dreaded Imperial Starfleet, ${user} has established a new secret base on the remote ice world of Hoth.</p><p>There, ${user} meets three possible matches but must choose one among them before learning their true identities....</p>`);
+
+		starWarsApp.music();
 	});
 }
 
@@ -125,6 +132,18 @@ starWarsApp.music = function () {
 	});
 }
 
+starWarsApp.startAnimation = function () {
+	$('.title').toggleClass('starwars-demo');
+	$('.text').toggleClass('crawl_text');
+}
+
+starWarsApp.skipButton = function () {
+	$('.skip').on('click', function () {
+		$('#openingCrawl').css('display', 'none');
+		$('#game').css('display', 'block');
+	});
+
+}
 
 starWarsApp.homeworld = function(homeworld) {
 	if (typeof homeworld === 'object'){
@@ -174,8 +193,19 @@ starWarsApp.profileOnPage = function (item, index) {
 	const homeworld = starWarsApp.homeworld(item.homeworld[0]);
 	const species = starWarsApp.species(item.species);
 	const starships = starWarsApp.starships(item.starships);
+	const splitName = name.split(" ");
+	let imgName = " ";
+	
+	if (splitName.length === 1) {
+		imgName = splitName[0];
+	} else {
+		imgName = splitName[0].concat(splitName[1]);
+	}
 
-	$(`.profile${index + 1}full`).append(`<p>You chose ${name}!</p><p>${name} is from ${homeworld}.<p><p>Have fun meeting their parents! We hear ${species}s are really nice!</p>`);
+    const img = document.createElement("img");
+    img.src = `assets/characterImage/${imgName}.jpg`;
+
+	$(`.profile${index + 1}full`).html(img).append(`<p>You chose ${name}!</p><p>${name} is from ${homeworld}.<p><p>Have fun meeting their parents! We hear ${species}s are really nice!</p>`);
 }
 
 starWarsApp.formSubmit = function (e) {
@@ -234,12 +264,23 @@ starWarsApp.formSubmit = function (e) {
 	});
 }
 
+starWarsApp.choosingProfile = function () {
+	$('.profile').on('click', function () {
+		$(this).find('.back').css('transform', 'rotateY(0)');
+		$(this).find('.front').css('transform', 'rotateY(-180deg)');
+		$('body').css('position', 'relative');
+		$(this).css('z-index', '10', 'position', 'absolute', 'transform', 'scale(2)');
+
+	});
+}
+
 starWarsApp.events = function () {
 	starWarsApp.getRandomProfiles();
 	starWarsApp.formSubmit();
 	starWarsApp.titleDisappear();
-	starWarsApp.music();
+	starWarsApp.skipButton();
 	starWarsApp.userName();
+	starWarsApp.choosingProfile();
 }
 
 starWarsApp.init = function() {

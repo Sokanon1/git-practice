@@ -85,7 +85,6 @@ starWarsApp.getSubsequentCharacterInformation = function(person, endpoint) {
 starWarsApp.getRandomProfiles = function() {
 	// for loop to call 3 random 'people' profiles
 	for (let r = 0; r < 3; r++) {
-	
 		randomNumber = Math.floor(Math.random() * 88) + 1;
 		starWarsApp.getPeople(randomNumber);
 	}
@@ -268,9 +267,6 @@ starWarsApp.choosingProfile = function () {
 	$('.profile').on('click', function () {
 		$(this).find('.back').css('transform', 'rotateY(0)');
 		$(this).find('.front').css('transform', 'rotateY(-180deg)');
-		$('body').css('position', 'relative');
-		$(this).css('z-index', '10', 'position', 'absolute', 'transform', 'scale(2)');
-
 	});
 }
 

@@ -138,8 +138,8 @@ starWarsApp.startAnimation = function () {
 
 starWarsApp.skipButton = function () {
 	$('.skip').on('click', function () {
-		$('#openingCrawl').css('display', 'none');
-		$('#game').css('display', 'block');
+		$('#openingCrawl').fadeOut().css('display', 'none');
+		$('#game').fadeIn().css('display', 'block');
 	});
 
 }

@@ -105,6 +105,7 @@ starWarsApp.userName = function(e){
 		$('.crawl_text').append(`<p>It is a dark time for ${user}. Although the Death Star has been destroyed, ${user}'s longing to find true love has not waned.</p><p>Evading the dreaded Imperial Starfleet, ${user} has established a new secret base on the remote ice world of Hoth.</p><p>There, ${user} meets three possible matches but must choose one among them before learning their true identities....</p>`);
 
 		starWarsApp.music();
+		setTimeout ( "starWarsApp.goToGame()", 30000 );
 	});
 }
 
@@ -138,10 +139,14 @@ starWarsApp.startAnimation = function () {
 
 starWarsApp.skipButton = function () {
 	$('.skip').on('click', function () {
-		$('#openingCrawl').fadeOut().css('display', 'none');
-		$('#game').fadeIn().css('display', 'block');
+		starWarsApp.goToGame();
 	});
 
+}
+
+starWarsApp.goToGame = function () {
+	$('#openingCrawl').fadeOut().css('display', 'none');
+	$('#game').fadeIn().css('display', 'block');
 }
 
 starWarsApp.homeworld = function(homeworld) {

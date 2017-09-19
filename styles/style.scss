@@ -308,6 +308,10 @@ img {
 	height: 100vh;
 }
 
+#game .wrapper {
+	max-width: 1000px;
+}
+
 #game p {
 	margin: 0;
 	margin-bottom: 15px;
@@ -323,6 +327,7 @@ img {
 	margin: 0 auto;
 	width: 100%;
 	padding: 0;
+	transform: all 0.5s ease;
 }
 
 #cards {
@@ -431,11 +436,39 @@ img {
 	border-radius: 15px;
 }
 
-.pick {
+// .pick {
+// 	display: flex;
+// 	background: rgba(237, 227, 235, 1);
+// 	color: $mainBoxShadow;
+// 	padding: 2px 15px;
+// 	border-radius: 15px;
+// 	box-shadow: 2px 3px 8px 1px $mainBoxShadow;
+// }
+
+.chosen {
+	transform: scale(1);
+	z-index: 10;
+	transition: all 0.5s;
+	position: absolute;
+	margin-top: 70px;
+	min-width: 200px;
+}
+
+.not_chosen {
+	pointer-events: none;
+	z-index: -10;
+}
+
+.play_again {
 	display: flex;
-	background: rgba(237, 227, 235, 1);
-	color: $mainBoxShadow;
-	padding: 2px 15px;
+	padding: 10px 30px;
 	border-radius: 15px;
-	box-shadow: 2px 3px 8px 1px $mainBoxShadow;
+	display: none;
+	margin-top: 70px;
+	background:white;
+	border: 2px solid black;
+	&:hover {
+		background: black;
+		color:rgba(205, 180, 100, 1)
+	}
 }

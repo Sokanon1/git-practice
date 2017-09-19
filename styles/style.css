@@ -561,6 +561,9 @@ img {
   display: none;
   height: 100vh; }
 
+#game .wrapper {
+  max-width: 1000px; }
+
 #game p {
   margin: 0;
   margin-bottom: 15px;
@@ -581,7 +584,10 @@ img {
   justify-content: space-around;
   margin: 0 auto;
   width: 100%;
-  padding: 0; }
+  padding: 0;
+  -webkit-transform: all 0.5s ease;
+  -ms-transform: all 0.5s ease;
+  transform: all 0.5s ease; }
 
 #cards {
   overflow-x: auto; }
@@ -686,14 +692,33 @@ img {
   padding: 10px 30px;
   border-radius: 15px; }
 
-.pick {
+.chosen {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  z-index: 10;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+  margin-top: 70px;
+  min-width: 200px; }
+
+.not_chosen {
+  pointer-events: none;
+  z-index: -10; }
+
+.play_again {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background: #ede3eb;
-  color: #2a2010;
-  padding: 2px 15px;
+  padding: 10px 30px;
   border-radius: 15px;
-  -webkit-box-shadow: 2px 3px 8px 1px #2a2010;
-  box-shadow: 2px 3px 8px 1px #2a2010; }
+  display: none;
+  margin-top: 70px;
+  background: white;
+  border: 2px solid black; }
+  .play_again:hover {
+    background: black;
+    color: #cdb464; }

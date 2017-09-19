@@ -91,7 +91,6 @@ starWarsApp.getRandomProfiles = function() {
 }
 
 // Landing Page and Opening Crawl
-
 // attempted to make the below work but couldn't thus the reason for the hard code in the html
 starWarsApp.userName = function(e){
 	$('.userName').on('submit', function(e){
@@ -105,7 +104,7 @@ starWarsApp.userName = function(e){
 		$('.crawl_text').append(`<p>It is a dark time for ${user}. Although the Death Star has been destroyed, ${user}'s longing to find true love has not waned.</p><p>Evading the dreaded Imperial Starfleet, ${user} has established a new secret base on the remote ice world of Hoth.</p><p>There, ${user} meets three possible matches but must choose one among them before learning their true identities....</p>`);
 
 		starWarsApp.music();
-		setTimeout ( "starWarsApp.goToGame()", 30000 );
+		setTimeout ( "starWarsApp.goToGame()", 28000 );
 	});
 }
 
@@ -202,8 +201,10 @@ starWarsApp.profileOnPage = function (item, index) {
 	
 	if (splitName.length === 1) {
 		imgName = splitName[0];
-	} else {
+	} else if (splitName.length === 2) {
 		imgName = splitName[0].concat(splitName[1]);
+	} else {
+		imgName = splitName[0].concat(splitName[1], splitName[2]);
 	}
 
     const img = document.createElement("img");
@@ -272,6 +273,16 @@ starWarsApp.choosingProfile = function () {
 	$('.profile').on('click', function () {
 		$(this).find('.back').css('transform', 'rotateY(0)');
 		$(this).find('.front').css('transform', 'rotateY(-180deg)');
+		$(this).addClass('chosen');
+		$('form').css('display', 'none');
+		$('.play_again').css('display', 'block');
+		$(this).siblings().addClass('.not_chosen');
+	});
+}
+
+starWarsApp.startAgain = function () {
+	$('.play_again').on('click', function () {
+		window.location.reload();
 	});
 }
 
@@ -282,6 +293,7 @@ starWarsApp.events = function () {
 	starWarsApp.skipButton();
 	starWarsApp.userName();
 	starWarsApp.choosingProfile();
+	starWarsApp.startAgain();
 }
 
 starWarsApp.init = function() {

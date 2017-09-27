@@ -4,30 +4,42 @@
 @import "partials/global";
 
 
-// LANDING PAGE [index.html]
+// LANDING PAGE
 
 #landing, #openingCrawl {
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url('../assets/stars_background.jpg');
 	position: relative;
 }
 
-#landing .sound {
+.sound {
 	background: none;
 	border: none;
-	position: absolute;
-	top: 0;
-	left: 30px;
+	position: fixed;
+	top: -10;
+	left: 0px;
 	padding: 20px 20px;
 	outline: none;
+	z-index: 100;
+	margin-top: 0;
+	visibility: hidden;
+	@include respond-to(ex-small) {
+		top: 0;
+		left: 77%;
+	}
 }
 
-#landing .sound i {
+.sound i {
+	color: white;
+	opacity: 0.8;
+	font-size: 30px;
+	@include respond-to(ex-small) {
+		color: $brandYellow;
+		font-size: 50px;
+	}
+}
+
+.sound:hover i {
 	color: $brandYellow;
-	opacity: 0.5;
-}
-
-#landing .sound:hover i {
-	font-color: $brandYellow;
 	opacity: 1;
 }
 
@@ -40,21 +52,46 @@
 	color: $brandBlue;
 	text-align: left;
 	margin: 0 auto;
-	width: 60%;
+	width: 80%;
+	@include respond-to(ex-small) {
+		transform: translateY(calc(30%));
+	}
 }
 
 .user_name p {
 	margin: 0;
 }
 .user_name input {
-	margin: 10px 0;
+	margin: 30px 0;
 	border-radius: 15px;
 	padding: 10px;
 	border: 5px solid $brandBlue;
 	text-align: center;
+	@include respond-to(ex-small) {
+		width: 100%;
+	}
 }
 
-.user_name .submitName{
+.userName {
+	@include respond-to(ex-small) {
+		width: 100%;
+		margin: 30px 0;
+	}
+}
+
+.landing_buttonContainer {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	@include respond-to(ex-small) {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.user_name .submitName, .user_name .skipIntro {
 	border-radius: 15px;
 	padding: 10px;
 	background: black;
@@ -63,21 +100,22 @@
 	color: $brandBlue;
 }
 
+
 .user_name a {
 	color: $brandBlue;
 	text-decoration: none;
 }
 
-.user_name .submitName:hover {
+.user_name .submitName:hover, .user_name .skipIntro:hover  {
 	background: $brandBlue;
 	border: 2px solid black;
 	color: black;
 }
-.user_name .submitName:hover a {
+.user_name .submitName:hover a, .user_name .skipIntro:hover a  {
 	color: black;
 }
 
-// OPENING CRAWL [openingCrawl.html]
+// OPENING CRAWL 
 
 #openingCrawl {
 	display: none;
@@ -260,7 +298,7 @@ img {
 
 #titles {
 	position: absolute;
-	width: 100%;
+	width: 60%;
 	height: 50em;
 	bottom: 0;
 	font-size: 350%;
@@ -270,6 +308,9 @@ img {
 	transform-origin: 50% 100%;
 	transform: perspective(300px) rotateX(25deg);
 	color: $brandYellow;
+	@include respond-to(large) {
+	  width: 80%;
+	}
 }
 
 #titles:after {
@@ -298,14 +339,19 @@ img {
 	100% { top: -170%; }
 }
 
-// GAME [game.html]
+// GAME 
 
 #game {
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0.5) 100%), url('../assets/OuSizUw.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	display: none;
-	height: 100vh;
+	min-height: 100vh;
+	@include respond-to(phone) {
+		background: #D2B48C;
+		min-height: 100vh;
+		padding-bottom: 100px;
+	}
 }
 
 #game .wrapper {
@@ -326,6 +372,7 @@ img {
 	justify-content: space-around;
 	margin: 0 auto;
 	width: 100%;
+	max-width: 800px;
 	padding: 0;
 	transform: all 0.5s ease;
 }
@@ -336,19 +383,16 @@ img {
 
 .profile {
 	width: 27%;
-	height: 70vh;
+	min-height: 70vh;
 	margin-top: 20px;
 	position: relative;
 	border-radius: 15px;
 	color: $mainBoxShadow;
+	min-height: 400px;
+	max-width: 300px;
 	@include respond-to(phone) {
-		width: 80%;
-	}
-}
-
-.two, .three {
-	@include respond-to(phone) {
-		display: none;
+		width: 90%;
+		max-width: 350px;
 	}
 }
 
@@ -378,6 +422,8 @@ img {
   height: 70vh;
   border-radius: 15px;
   background: white;
+  min-height: 400px;
+  max-width: 400px;
 }
 
 .back {
@@ -387,7 +433,15 @@ img {
   -webkit-transform:rotateY(180deg); 
   background: tan;
   padding: 20px;
+  min-height: 400px;
+  max-width: 400px;
   text-align: center;
+  @include respond-to(phone) {
+		width: 100%;
+		padding-bottom: 20px;
+		margin-bottom: 10px;
+		height: 70vh;
+	}
 }
 
 .back p {
@@ -396,10 +450,10 @@ img {
 
 .back img {
 	opacity: 1;
-	width: 100%;
 	margin: 0 auto;
 	margin-bottom: 10px;
 	max-width: 90%;
+	width: 80%;
 }
 
 .overlay {
@@ -429,34 +483,34 @@ img {
 .form {
 	padding-top: 10px;
 	align-content: center;
+	@include respond-to(phone) {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		bottom: 0;
+		z-index: 10;
+		background: rgba(210,180,140, 0.5);
+		position: fixed;
+		padding: 20px 0px;
+	}
+}
+
+.form select {
+	@include respond-to(phone) {
+		width: 95%;
+		height: 50px;
+		text-align: center;	
+	}
 }
 
 .submit {
 	padding: 10px 30px;
 	border-radius: 15px;
-}
-
-// .pick {
-// 	display: flex;
-// 	background: rgba(237, 227, 235, 1);
-// 	color: $mainBoxShadow;
-// 	padding: 2px 15px;
-// 	border-radius: 15px;
-// 	box-shadow: 2px 3px 8px 1px $mainBoxShadow;
-// }
-
-.chosen {
-	transform: scale(1);
-	z-index: 10;
-	transition: all 0.5s;
-	position: absolute;
-	margin-top: 70px;
-	min-width: 200px;
-}
-
-.not_chosen {
-	pointer-events: none;
-	z-index: -10;
+	white-space: normal;
+	@include respond-to(phone) {
+		font-size: 10px;
+		width: 30%;
+	}
 }
 
 .play_again {
@@ -471,4 +525,12 @@ img {
 		background: black;
 		color:rgba(205, 180, 100, 1)
 	}
+	@include respond-to(phone) {
+		margin-top: 5%;
+		width: 50%;
+	}
+}
+
+.fa {
+	color: #000;
 }

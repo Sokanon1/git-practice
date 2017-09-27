@@ -1,8 +1,10 @@
+
 const starWarsApp = {};
 	starWarsApp.endpoints = ['starships', 'vehicles', 'films', 'species', 'homeworld'], 
 	starWarsApp.profiles = [],
 	starWarsApp.profileAsked = 0,
 	starWarsApp.questionAsked = [],
+	starWarsApp.playMusic = true;
 
 starWarsApp.getPeople = function (number){
 	$.ajax({
@@ -34,8 +36,8 @@ starWarsApp.getPeople = function (number){
 
 				if (starWarsApp.profiles.length === 3) {
 					starWarsApp.profiles.forEach(starWarsApp.profileOnPage)
+					// $('.gallery').slick();
 				}
-				console.log(starWarsApp.profiles);
 
 			});
 	}).fail(function(err){
@@ -90,8 +92,6 @@ starWarsApp.getRandomProfiles = function() {
 	}
 }
 
-// Landing Page and Opening Crawl
-// attempted to make the below work but couldn't thus the reason for the hard code in the html
 starWarsApp.userName = function(e){
 	$('.userName').on('submit', function(e){
 		e.preventDefault();
@@ -101,9 +101,8 @@ starWarsApp.userName = function(e){
 
 		starWarsApp.startAnimation();
 		
-		$('.crawl_text').append(`<p>It is a dark time for ${user}. Although the Death Star has been destroyed, ${user}'s longing to find true love has not waned.</p><p>Evading the dreaded Imperial Starfleet, ${user} has established a new secret base on the remote ice world of Hoth.</p><p>There, ${user} meets three possible matches but must choose one among them before learning their true identities....</p>`);
+		$('.crawl_text').append(`<p>It is a dark time for ${user}. Although the Death Star has been destroyed, ${user}'s longing to find true love has not waned.</p><p>Evading the dreaded Imperial Starfleet, ${user} has established a new secret base on the planet Tatooine.</p><p>There, ${user} meets three possible matches but must choose one among them before learning their true identities...</p>`);
 
-		starWarsApp.music();
 		setTimeout ( "starWarsApp.goToGame()", 28000 );
 	});
 }
@@ -117,16 +116,17 @@ starWarsApp.titleDisappear = function(){
 
 starWarsApp.music = function () {
 	const audio = document.getElementById('themeMusic');
-	$(audio).get(0).play();
-	audio.muted = false;
 
 	$(".sound").on("click", function() {
 		$("i").toggleClass('fa-volume-up fa-volume-off');
-
-		if (audio.muted === true){
-			audio.muted = false;
-		} else if(audio.muted === false){
-			audio.muted = true;
+		if($(this).hasClass('playing')) {
+			audio.pause();
+			$(this).removeClass('playing')
+		}
+		else if(starWarsApp.playMusic) {
+			console.log('playing');
+			audio.play();
+			$(this).addClass('playing')
 		}
 	});
 }
@@ -134,18 +134,47 @@ starWarsApp.music = function () {
 starWarsApp.startAnimation = function () {
 	$('.title').toggleClass('starwars-demo');
 	$('.text').toggleClass('crawl_text');
+	$('.sound').css('visibility', 'visible');
+
+	starWarsApp.music();
+
+	if(starWarsApp.playMusic) {
+		$('audio')[0].play();
+		$('.sound').addClass('playing')
+	}
 }
 
 starWarsApp.skipButton = function () {
 	$('.skip').on('click', function () {
 		starWarsApp.goToGame();
 	});
-
 }
+
+
+starWarsApp.infoBox = function () {
+	swal({
+	  title: 'Instructions',
+	  text: `Welcome! Inspired by the 1970s tv show 'The Dating Game', let's find out which out of three anonymous Star Wars characters you choose to go on a date with!  Pick a question from the options provided.  Then click the button "Ask Profile..." with the number of the profile you'd like to ask the question to.  When you've made your decision, click the profile card of your choice and see you who chose! May the force be with you!`,
+	  imageWidth: 80,
+	  imageHeight: 300,
+	  imageAlt: 'Custom image',
+	  animation: false
+	})
+}
+
+starWarsApp.skipIntro = function () {
+	$('.skipIntro').on('click', function(){
+		$('#landing').fadeOut().css('display', 'none');
+		$('#game').fadeIn().css('display', 'block');
+		starWarsApp.infoBox();
+	});
+}
+
 
 starWarsApp.goToGame = function () {
 	$('#openingCrawl').fadeOut().css('display', 'none');
 	$('#game').fadeIn().css('display', 'block');
+	starWarsApp.infoBox();
 }
 
 starWarsApp.homeworld = function(homeworld) {
@@ -172,7 +201,7 @@ starWarsApp.species = function(species) {
 
 starWarsApp.starships = function(starships) {
 	if (starships.length === 0) {
-		return "I've never driven a spaceship before."
+		return "I've never flown a spaceship before."
 
 	} else if (starships.length >= 1) {
 		const shipList = starships.map(starship => {
@@ -210,7 +239,7 @@ starWarsApp.profileOnPage = function (item, index) {
     const img = document.createElement("img");
     img.src = `assets/characterImage/${imgName}.jpg`;
 
-	$(`.profile${index + 1}full`).html(img).append(`<p>You chose ${name}!</p><p>${name} is from ${homeworld}.<p><p>Have fun meeting their parents! We hear ${species}s are really nice!</p>`);
+	$(`.profile${index + 1}full`).html(img).append(`<p>You chose ${name}!</p><p>${name} is from ${homeworld}.<p><p>Have fun meeting the parents! We hear ${species}s are really nice!</p>`);
 }
 
 starWarsApp.formSubmit = function (e) {
@@ -275,9 +304,18 @@ starWarsApp.choosingProfile = function () {
 		$(this).find('.front').css('transform', 'rotateY(-180deg)');
 		$(this).addClass('chosen');
 		$('form').css('display', 'none');
+		$('.form').css('background', 'none');
 		$('.play_again').css('display', 'block');
 		$(this).siblings().addClass('.not_chosen');
+		$(this).siblings().css('pointer-events', 'none');
+
+		setTimeout(starWarsApp.revealingOtherProfiles, 2000);
 	});
+}
+
+starWarsApp.revealingOtherProfiles = function () {
+	$('.chosen').siblings().find('.back').css('transform', 'rotateY(0)');
+	$('.chosen').siblings().find('.front').css('transform', 'rotateY(-180deg)');
 }
 
 starWarsApp.startAgain = function () {
@@ -294,6 +332,7 @@ starWarsApp.events = function () {
 	starWarsApp.userName();
 	starWarsApp.choosingProfile();
 	starWarsApp.startAgain();
+	starWarsApp.skipIntro();
 }
 
 starWarsApp.init = function() {

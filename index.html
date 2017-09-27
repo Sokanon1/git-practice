@@ -7,11 +7,17 @@
 	<title>Dating Wars</title>
 
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/Sensibleworld-Starwars-Death-Star.ico">
+	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Source+Sans+Pro" rel="stylesheet">
-	<link rel="stylesheet" href="styles/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+	<button class="sound">
+		<i class="fa fa-volume-up" aria-hidden="true"></i>
+	</button>
 	<section id="landing">
 		<div class="wrapper">
 			<div class="user_name">
@@ -20,16 +26,16 @@
 				<p>far away...</p>
 				<form class="userName">
 				 	<input class="name" type="text" placeholder="Your Name" required>
-				 	<button class="submitName" type="submit">Let's Begin</button>
+			 		<div class="landing_buttonContainer">
+			 			<button class="submitName" type="submit">Let's Begin</button>
+			 			<button class="skipIntro">Skip Intro</button>
+			 		</div>
 				</form>
-			</div>
+		 	</div>
 		</div>
 	</section>
 	<section id="openingCrawl">
 		<div class="wrapper">
-			<button class="sound">
-				<i class="fa fa-volume-up fa-stack-2x" aria-hidden="true"></i>
-			</button>
 			<audio id="themeMusic" src="assets/starWarsMainTheme.mp3"></audio>
 			<div class="title">
 			  <img src="assets/star.svg" alt="Star" class="star">
@@ -46,7 +52,7 @@
 	</section>
 	<section id="game">
 		<div class="options">
-				<ul class="wrapper" id="cards">
+				<ul class="gallery  wrapper" id="cards">
 					<li class="profile one">
 						<div class="front">
 							<img src="assets/droid_silouette.png" alt="">
@@ -98,16 +104,19 @@
 				    <option value="homeworld">Where are you from?</option>
 				  </select>
 				  <div class="inputs">
-					  <input class="submit profile_1" type="submit" data-index="0" value="1">
-					  <input class="submit profile_2" type="submit" data-index="1" value="2">
-					  <input class="submit profile_3" type="submit" data-index="2" value="3">
+					  <input class="submit profile_1" type="submit" data-index="0" value="Ask Profile 1">
+					  <input class="submit profile_2" type="submit" data-index="1" value="Ask Profile 2">
+					  <input class="submit profile_3" type="submit" data-index="2" value="Ask Profile 3">
 				  </div>
 				</form>
 			</div>
-			<button class="play_again">Play Again</button>
+			<button class="play_again">Play Again with 3 New Profiles!</button>
 		</div>
 	</section>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.0/sweetalert2.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
+	<!-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> -->
 	<script src="scripts/script.js"></script>
 </body>
 </html>
